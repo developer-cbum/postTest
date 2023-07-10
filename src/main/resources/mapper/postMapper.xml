@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.mapper.PostMapper">
+
+<!--게시판 상세 조회-->
+    <select id="select" resultType="PostVO">
+        select post_id, post_writer, post_title, post_content, post_register_date, post_update_date
+        from tbl_post
+        where post_id = #{postId}
+    </select>
+
+    <select id="selectAll" resultType="PostVO">
+        select post_id, post_writer, post_title, post_content, post_register_date, post_update_date
+        from tbl_post
+    </select>
+
+<!-- 게시판 등록-->
+    <insert id="insert">
+        insert into tbl_post
+        (post_writer, post_title, post_content)
+        values(#{postWriter}, #{postTitle}, #{postContent})
+    </insert>
+
+<!--게시판 수정-->
+    <update id="update">
+        update tbl_post
+        set post_writer = #{postWriter}, post_title = #{postTitle}, post_content = #{postContent}, post_update_date = current_timestamp()
+        where post_id = #{postId}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_post
+        where post_id = #{postId}
+    </delete>
+
+</mapper>
