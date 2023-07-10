@@ -1,5 +1,6 @@
 package com.post.service;
 
+import com.post.domain.dto.Pagination;
 import com.post.domain.vo.PostVO;
 
 import java.util.List;
@@ -13,13 +14,16 @@ public interface PostService {
     //   게시글 상세 조회
     public Optional<PostVO> getPost(Long id);
     //   전체 게시글 조회
-    public List<PostVO> getPostList();
+    public List<PostVO> getPostList(Pagination pagination);
 
     //   게시글 수정
     public void modifyPost(PostVO postVO);
 
     //   게시글 삭제
     public void removePost(Long id);
+
+    //    게시글 총개수
+    public int getTotal();
 
 
 

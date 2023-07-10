@@ -1,6 +1,7 @@
 package com.post.service;
 
 import com.post.dao.PostDAO;
+import com.post.domain.dto.Pagination;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,11 @@ public class PostServiceTests {
 
     @Test
     public void getListTest(){
-        postService.getPostList().stream().map(PostVO::toString).forEach(log::info);
+        Pagination pagination = new Pagination();
+        pagination.setTotal(postService.getTotal());
+        pagination.setPage(1);
+        pagination.progress();
+        postService.getPostList(pagination).stream().map(PostVO::toString).forEach(log::info);
     }
 
     @Test

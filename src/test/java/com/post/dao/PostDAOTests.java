@@ -1,5 +1,6 @@
 package com.post.dao;
 
+import com.post.domain.dto.Pagination;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,12 @@ public class PostDAOTests {
 
     @Test
     public void findAllTest(){
-        postDAO.postFindAll().stream().map(PostVO::toString).forEach(log::info);
+
+        Pagination pagination = new Pagination();
+        pagination.setTotal(postDAO.findTotal());
+        pagination.setPage(1);
+        pagination.progress();
+        postDAO.postFindAll(pagination).stream().map(PostVO::toString).forEach(log::info);
     }
 
     @Test

@@ -12,6 +12,8 @@
     <select id="selectAll" resultType="PostVO">
         select post_id, post_writer, post_title, post_content, post_register_date, post_update_date
         from tbl_post
+        order by post_id desc
+        limit #{offset}, #{rowCount}
     </select>
 
 <!-- 게시판 등록-->
@@ -28,9 +30,15 @@
         where post_id = #{postId}
     </update>
 
+<!--  게시글 삭제-->
     <delete id="delete">
         delete from tbl_post
         where post_id = #{postId}
     </delete>
+
+<!--  게시글 총 개수-->
+    <select id="selectTotal" resultType="_int">
+        select count(post_id) from tbl_post
+    </select>
 
 </mapper>
