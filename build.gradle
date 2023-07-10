@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.json:json:20200518'
     implementation 'javax.servlet:jstl'
     implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
     implementation 'org.springframework.boot:spring-boot-starter-web'
