@@ -24,19 +24,24 @@
             <img src="/images/logo2.png" alt="">
         </div>
         <div class="login-wrap">
-            <form action="/accounts/login" method="post">
+            <form action="/members/login" method="post">
                 <div class="mb-3">
                     <label for="member-email" class="form-label">이메일 주소</label>
-                    <input type="email" class="form-control" id="member-email">
+                    <input type="email" class="form-control" id="member-email" placeholder="example@email.com">
                 </div>
                 <div class="mb-3">
                     <label for="member-password" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="member-password">
+                    <input type="password" class="form-control" id="member-password" placeholder="password">
                 </div>
-                <button type="submit" class="btn btn-primary">로그인</button>
+                <div class="member-btn-wrap">
+                    <button type="button" class="btn btn-primary join-btn">회원가입</button>
+                    <button type="button" class="btn btn-primary login-btn">로그인</button>
+                </div>
             </form>
         </div>
     </section>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="/js/login.js"></script>
 </html>

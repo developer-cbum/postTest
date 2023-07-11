@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/accounts/*")
-public class AccountsController {
+@RequestMapping("/members/*")
+public class MembersController {
 
     @GetMapping("/login")
     public void goToLogin(){;}
 
+    @GetMapping("/join")
+    public void goToJoin(){;}
 }

@@ -15,7 +15,7 @@
         <a href="/posts/list"><div class="main-logo"><img src="/images/logo2.png" alt="" /></div></a>
         <div class="header-right-wrap">
             <a href="/posts/list"><div class="home">Home</div></a><span>|</span>
-            <a href="/accounts/login"><div class="login">Login</div></a>
+            <a href="/members/login"><div class="login">Login</div></a>
         </div>
     </div>
 </header>
