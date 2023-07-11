@@ -45,7 +45,7 @@ public class MemberDAOTests {
     //이메일 중복검사
     @Test
     public void findMemberByEmail(){
-        log.info(String.valueOf(memberDAO.findMemberByEmail("ljm123@naver.com")));
+        log.info(String.valueOf(memberDAO.findMemberByEmail("ljm1234@naver.com")));
     }
 
 }

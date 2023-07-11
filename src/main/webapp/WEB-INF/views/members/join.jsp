@@ -32,9 +32,9 @@
                 <div class="mb-3">
                     <label for="member-email" class="form-label">이메일 주소</label>
                     <input type="email" class="form-control" id="member-email">
-                    <div class="valid-feedback">
+                    <div id="email-pass" class="valid-feedback">
                     </div>
-                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    <div id="email-fail" class="invalid-feedback">
                     </div>
                 </div>
                 <div class="mb-3">
