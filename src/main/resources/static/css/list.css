@@ -53,6 +53,7 @@
 
 .writer-wrap div {
   font-size: 12px;
+  padding-top: 2px;
 }
 
 .box {
@@ -63,7 +64,7 @@
 
 .title {
   width: 940px;
-  padding: 10px;
+  padding: 10px 12px;
   font-weight: 400;
 }
 
@@ -72,9 +73,17 @@
   margin: 0 auto;
 }
 
+.writer{
+  padding-right: 10px;
+}
+
 .register-time {
-  margin-left: 10px;
+  text-align: center;
+  width: 53px;
   padding-left: 10px;
+}
+
+.writer-wrap span{
   border-left: 1px solid #eee;
 }
 
@@ -105,4 +114,16 @@
   margin: 50px 0 50px;
   justify-content: center;
 
+}
+
+.header-right-wrap{
+  display: flex;
+}
+.login{
+  width: 50px;
+}
+
+.header-wrap span{
+  position: relative;
+  top: 20px;
 }

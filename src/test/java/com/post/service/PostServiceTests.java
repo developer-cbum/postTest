@@ -18,11 +18,13 @@ public class PostServiceTests {
 
     @Test
     public void registerTest(){
-        PostVO postVO = new PostVO();
-        postVO.setPostWriter("작성자4");
-        postVO.setPostTitle("제목4");
-        postVO.setPostContent("내용4");
-        postService.registerPost(postVO);
+        for (int i = 0; i < 100; i++) {
+            PostVO postVO = new PostVO();
+            postVO.setPostWriter("작성자" + (i+1));
+            postVO.setPostTitle("제목"+ (i+1));
+            postVO.setPostContent("내용"+ (i+1));
+            postService.registerPost(postVO);
+        }
     }
 
     @Test

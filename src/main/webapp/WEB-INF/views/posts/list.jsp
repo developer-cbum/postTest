@@ -14,31 +14,18 @@
     />
     <link rel="stylesheet" href="/css/common.css" />
     <link rel="stylesheet" href="/css/list.css" />
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"
-    ></script>
 </head>
 <body>
 <div class="container">
-    <header class="header">
-        <div class="header-wrap">
-            <div class="main-logo"><img src="/images/logo2.png" alt="" /></div>
-            <a href="#"><div class="login">로그인</div></a>
-        </div>
-    </header>
-    <section class="banner">
-        <img src="/images/logo.png" alt="" />
-    </section>
+    <jsp:include page="../header/header.jsp" />
     <section>
         <div class="content-wrap">
             <div class="content-top">
                 <div>
                     <div class="post-list">게시글 목록</div>
-                    <div class="post-total">4개</div>
+                    <div class="post-total"><c:out value="${pagination.total}개"/></div>
                 </div>
-                <div class="post-btn-wrap"><button class="btn btn-primary">게시글 등록</button></div>
+                <div class="post-btn-wrap"><button type="button" class="btn btn-primary">게시글 등록</button></div>
             </div>
             <ul class="content-ul"></ul>
             <nav aria-label="Page navigation example">
@@ -57,7 +44,7 @@
                     </c:choose>
                 </c:forEach>
                 <c:if test="${pagination.next}">
-                    <li class="page-item"><a class="page-link" href="/posts/list?page=${pagination.endPage+1}"></a></li>
+                    <li class="page-item"><a class="page-link" href="/posts/list?page=${pagination.endPage+1}">></a></li>
                 </c:if>
                 </ul>
             </nav>

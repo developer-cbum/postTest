@@ -17,8 +17,13 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
 mybatis:
   mapper-locations: classpath*:/mapper/*.xml
-  type-aliases-package: com.post.domain.vo
+  type-aliases-package: com.post.domain.vo, com.post.domain.dto
   configuration:
     map-underscore-to-camel-case: true
