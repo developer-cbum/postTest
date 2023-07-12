@@ -19,9 +19,13 @@
 
 <!-- 게시판 등록-->
     <insert id="insert">
-        insert into tbl_post
-        (post_title, post_content, member_id)
-        values(#{postTitle}, #{postContent}, #{memberId})
+        <selectKey keyProperty="postId" order="BEFORE" resultType="long">
+            select Auto_increment from information_schema.tables
+            where table_schema = 'post' and table_name = 'tbl_post'
+        </selectKey>
+            insert into tbl_post
+            (post_id, post_title, post_content, member_id)
+        values(#{postId}, #{postTitle}, #{postContent}, #{memberId})
     </insert>
 
 <!--게시판 수정-->

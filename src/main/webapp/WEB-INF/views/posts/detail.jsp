@@ -34,6 +34,7 @@
                   <c:out value="${post.memberName}"/>
                 </div>
             </div>
+
             <div class="mb-3">
                 <label for="content">내용</label>
                 <div class="form-control last-content" id="content">

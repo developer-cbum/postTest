@@ -1,8 +1,12 @@
 package com.post.domain.dto;
 
+import com.post.domain.vo.FileVO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Data
@@ -15,4 +19,5 @@ public class PostDTO {
     private String postContent;
     private String postRegisterDate;
     private String postUpdateDate;
+    private List<FileVO> files = new ArrayList<>();
 }

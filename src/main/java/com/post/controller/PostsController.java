@@ -2,7 +2,9 @@ package com.post.controller;
 
 import com.post.domain.dto.Pagination;
 import com.post.domain.dto.PostDTO;
+import com.post.domain.vo.FileVO;
 import com.post.domain.vo.PostVO;
+import com.post.service.FileService;
 import com.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PostsController {
 
     private final PostService postService;
+    private final FileService fileService;
 
 
     @GetMapping("/list")
@@ -39,8 +42,9 @@ public class PostsController {
     public void goToWrite(){;}
 
     @PostMapping("/write")
-    public RedirectView write(PostVO postVO){
-        postService.registerPost(postVO);
+    public RedirectView write(PostDTO postDTO){
+        log.info(postDTO.toString());
+        postService.registerPost(postDTO);
         return new RedirectView("/posts/list");
     }
 
@@ -54,8 +58,8 @@ public class PostsController {
 
     @GetMapping("/modify/{id}")
     public String goToModify(@PathVariable Long id, Model model){
-        postService.getPost(id).ifPresent(postVO ->
-                model.addAttribute("post", postVO));
+        postService.getPost(id).ifPresent(postDTO ->
+                model.addAttribute("post", postDTO));
         return "/posts/modify";
     }
 

@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface PostService {
 
     //   게시글 등록
-    public void registerPost(PostVO postVO);
+    public void registerPost(PostDTO postDTO);
 
     //   게시글 상세 조회
     public Optional<PostDTO> getPost(Long id);

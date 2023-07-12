@@ -46,13 +46,11 @@ $(document).ready(function () {
         }
 
         if($(this).val() != ''){
-            $passTags.eq(0).text(`환영합니다`);
-            $passTags.eq(0).show();
+            $passTags.eq(0).text(`환영합니다`).show();
             $notPassTags.eq(0).hide();
             nameFlag = true;
         }else{
-            $notPassTags.eq(0).text("이름을 입력해주세요");
-            $notPassTags.eq(0).show();
+            $notPassTags.eq(0).text("이름을 입력해주세요").show();
             $passTags.eq(0).hide();
             nameFlag=false;
         }
@@ -63,13 +61,11 @@ $(document).ready(function () {
     //비밀번호 검사
     $password.on("input", function (){
            if(nullPassword()){
-               $passTags.eq(2).text(`비밀번호 입력완료`);
-               $passTags.eq(2).show();
+               $passTags.eq(2).text(`비밀번호 입력완료`).show();
                $notPassTags.eq(2).hide();
                passwordFlag=true;
            }else{
-               $notPassTags.eq(2).text("비밀번호를 입력해주세요");
-               $notPassTags.eq(2).show();
+               $notPassTags.eq(2).text("비밀번호를 입력해주세요").show();
                $passTags.eq(2).hide();
                passwordFlag=false;
            }
@@ -79,8 +75,7 @@ $(document).ready(function () {
     //비밀번호 확인
     $checkPassword.on("input", function (){
         if(!nullCheckPassword()) {
-            $notPassTags.eq(3).text("비밀번호 확인를 입력해주세요");
-            $notPassTags.eq(3).show();
+            $notPassTags.eq(3).text("비밀번호 확인를 입력해주세요").show();
             $passTags.eq(3).hide();
         }
         samePassword(sameCheckPassword());
@@ -96,13 +91,11 @@ $(document).ready(function () {
             data:  {memberEmail : memberEmail},
             success: function (data){
                 if(data){
-                    $passTags.eq(1).text("멋진 이메일이네요");
-                    $passTags.eq(1).show();
+                    $passTags.eq(1).text("멋진 이메일이네요").show();
                     $notPassTags.eq(1).hide();
                     emailFlag =true;
                 }else{
-                    $notPassTags.eq(1).text("중복된아이디입니다");
-                    $notPassTags.eq(1).show();
+                    $notPassTags.eq(1).text("중복된아이디입니다").show();
                     $passTags.eq(1).hide();
                     emailFlag =false;
                 }
@@ -121,13 +114,11 @@ $(document).ready(function () {
 
     function samePassword(callback){
         if(callback){
-            $passTags.eq(3).text(`비밀번호가 일치합니다`);
-            $passTags.eq(3).show();
+            $passTags.eq(3).text(`비밀번호가 일치합니다`).show();
             $notPassTags.eq(3).hide();
             passwordFlag=true;
         }else{
-            $notPassTags.eq(3).text("비밀번호 불일치합니다");
-            $notPassTags.eq(3).show();
+            $notPassTags.eq(3).text("비밀번호 불일치합니다").show();
             $passTags.eq(3).hide();
             passwordFlag=false;
         }
@@ -162,8 +153,7 @@ $(document).ready(function () {
 
     function emailCheck(){
         if (!fn_emailChk($email.val())) {
-            $notPassTags.eq(1).text("올바른 이메일 형식을 입력해 주세요");
-            $notPassTags.eq(1).show();
+            $notPassTags.eq(1).text("올바른 이메일 형식을 입력해 주세요").show();
             $passTags.eq(1).hide();
             return true;
         }

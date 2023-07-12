@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface PostMapper {
 
     //게시판 등록
-    public void insert(PostVO postVO);
+    public void insert(PostDTO postDTO);
 
     //게시판 하나 조회
     public Optional<PostDTO> select(Long postId);

@@ -32,6 +32,10 @@
                   <label for="post-writer">작성자</label>
                   <div class="form-control post-writer" id="post-writer"><c:out value="${post.memberName}"/></div>
               </div>
+              <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
               <div class="mb-3">
                   <label for="post-content">내용</label>
                   <textarea class="form-control content-area" id="post-content" name="postContent" placeholder="내용을 입력해주세요"><c:out value="${post.postContent}"/></textarea>

@@ -1,5 +1,6 @@
 package com.post.service;
 
+import com.post.dao.FileDAO;
 import com.post.domain.vo.FileVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,21 +11,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
 
-
-    private final FileService fileService;
+    private final FileDAO fileDAO;
 
     @Override
     public void registerFile(FileVO fileVO) {
-        fileService.registerFile(fileVO);
+        fileDAO.saveFile(fileVO);
     }
 
     @Override
     public List<FileVO> getFiles(Long postId) {
-        return fileService.getFiles(postId);
+        return fileDAO.findByPostId(postId);
     }
 
     @Override
     public void removeFiles(Long postId) {
-
+        fileDAO.deleteFile(postId);
     }
 }

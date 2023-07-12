@@ -17,8 +17,8 @@ public class PostDAO {
     private final PostMapper postMapper;
 
 //   게시글 등록
-    public void savePost(PostVO postVO){
-        postMapper.insert(postVO);
+    public void savePost(PostDTO postDTO){
+        postMapper.insert(postDTO);
     }
 
 //   게시글 상세 조회
