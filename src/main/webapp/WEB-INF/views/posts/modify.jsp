@@ -26,8 +26,7 @@
                 <input type="hidden" name="memberId" value="${sessionScope.id}">
                 <div class="mb-3">
                     <label for="post-title">제목</label>
-                    <input type="text" class="form-control" id="post-title" name="postTitle" placeholder="제목을 입력해주세요" =
-                    "${post.postTitle}">
+                    <input type="text" class="form-control" id="post-title" name="postTitle" placeholder="제목을 입력해주세요" value="${post.postTitle}">
                 </div>
                 <div class="mb-3">
                     <label for="post-writer">작성자</label>
@@ -37,11 +36,11 @@
                     <label for="formFile">첨부 파일</label>
                     <div class="form-control" type="file" id="formFile">
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control modify-file" id="inputGroupFile02" multiple>
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                            <input type="file" class="form-control modify-file" id="file" multiple>
+                            <label class="input-group-text" for="file">Upload</label>
                         </div>
                         <c:forEach items="${files}" var="file">
-                            <div class="modify-file-wrap">
+                            <div id="${file.fileId}" class="modify-file-wrap">
                                 <div class="file-wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">

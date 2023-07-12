@@ -43,7 +43,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void modifyPost(PostDTO postDTO) {
-
 //       새로 수정하는 파일 추가
         postDAO.setPost(postDTO);
         postDTO.getFiles().forEach(file -> {

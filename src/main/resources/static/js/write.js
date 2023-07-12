@@ -5,12 +5,18 @@ $(document).ready(function (){
     const $registerBtn = $('.register-btn');
     // 입력 태그들
     const $tags = $('.form-control')
+    // 파일 삭제버튼
+    const $fileDeleteBtn = $('.file-delete-btn');
+    //파일 인풋
+    const $fileInput = $('#file');
 
+    let count = 0;
     let sizes = [];
     let name =[];
+    // 새파일
     let text = "";
     // 파일 인풋
-    $tags.eq(1).on("change", function (){
+    $fileInput.on("change", function (){
         text="";
         let files = $(this)[0].files;
         let formData = new FormData();
@@ -64,9 +70,9 @@ $(document).ready(function (){
         }
 
 
-        if($tags.eq(2).val() == ''){
+        if($('.content-area').val() == ''){
             alert("내용을 입력해주세요.")
-            $tags.eq(2).focus();
+            $('.content-area').focus();
             return;
         }
 
@@ -74,5 +80,18 @@ $(document).ready(function (){
         $form.append(text)
         $form.submit();
     })
+
+
+
+//    파일 삭제 버튼
+    $fileDeleteBtn.on("click", function (){
+        const $thisFileWrap = $(this).closest('.modify-file-wrap')
+        //화면 상숨기기
+        $thisFileWrap.hide();
+       text+= `<input type="hidden" name="fileIdsForDelete[${count}]" value="${$thisFileWrap.prop("id")}">`
+        console.log(count)
+        $form.append(text)
+        ++count;
+    });
 
 })

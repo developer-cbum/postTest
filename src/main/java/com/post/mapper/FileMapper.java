@@ -12,7 +12,7 @@ public interface FileMapper {
 
     public List<FileVO> selectByPostId(Long postId);
 
-    public void delete(Long postId);
+    public void delete(Long fileId);
 
     public int getCount(Long postId);
 

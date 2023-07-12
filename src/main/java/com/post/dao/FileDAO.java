@@ -22,8 +22,8 @@ public class FileDAO {
         return fileMapper.selectByPostId(postId);
     }
 
-    public void deleteFile(Long postId){
-        fileMapper.delete(postId);
+    public void deleteFile(Long fileId){
+        fileMapper.delete(fileId);
     }
 
     public int getCount(Long postId){ return fileMapper.getCount(postId);}
