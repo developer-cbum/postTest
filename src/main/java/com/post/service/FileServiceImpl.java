@@ -27,4 +27,9 @@ public class FileServiceImpl implements FileService {
     public void removeFiles(Long postId) {
         fileDAO.deleteFile(postId);
     }
+
+    @Override
+    public int getCount(Long postId) {
+        return fileDAO.getCount(postId);
+    }
 }

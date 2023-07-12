@@ -2,7 +2,9 @@ package com.post.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -53,12 +58,13 @@ public class FileController {
         return FileCopyUtils.copyToByteArray(new File("C:/upload/", fileName));
     }
 
-    //    파일 다운로드
-    @GetMapping
+//        파일 다운로드
+    @GetMapping("download")
     public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
+        log.info("들어옴");
         Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859"));
+        headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);
     }
 

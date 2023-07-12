@@ -30,3 +30,17 @@
 .input-group-text{
   margin-top: 8px;
 }
+
+.modify-file-wrap{
+  display: flex;
+}
+
+.file-delete-btn{
+  margin-left: 10px;
+  width: 50px;
+  text-align: center;
+  padding-bottom: 24px;
+  height: 30px;
+  position: relative;
+  top: -2px;
+}

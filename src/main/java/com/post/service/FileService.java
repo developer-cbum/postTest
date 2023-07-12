@@ -11,4 +11,6 @@ public interface FileService {
     public List<FileVO> getFiles(Long postId);
 
     public void removeFiles(Long postId);
+
+    public int getCount(Long postId);
 }

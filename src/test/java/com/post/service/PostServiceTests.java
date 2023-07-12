@@ -3,6 +3,7 @@ package com.post.service;
 import com.post.dao.PostDAO;
 import com.post.domain.dto.Pagination;
 import com.post.domain.dto.PostDTO;
+import com.post.domain.vo.FileVO;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,15 @@ public class PostServiceTests {
     private PostService postService;
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private MemberService memberService;
+
+    @Test
+    public void test(){
+        fileService.getFiles(113L).stream().map(FileVO::toString).forEach(log::info);
+    }
 
 //    @Test
 //    public void registerTest(){

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class PostServiceImpl implements PostService {
     private final PostDAO postDAO;
     private final FileDAO fileDAO;
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void registerPost(PostDTO postDTO) {
         postDAO.savePost(postDTO);
         for (int i = 0; i < postDTO.getFiles().size(); i++) {
@@ -41,7 +43,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void modifyPost(PostDTO postDTO) {
+
+//       새로 수정하는 파일 추가
         postDAO.setPost(postDTO);
+        postDTO.getFiles().forEach(file -> {
+            file.setPostId(postDTO.getPostId());
+            fileDAO.saveFile(file);
+        });
+//      삭제
+        postDTO.getFileIdsForDelete().forEach(fileDAO::deleteFile);
     }
 
     @Override

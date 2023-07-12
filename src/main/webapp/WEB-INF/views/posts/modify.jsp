@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>게시판</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -12,36 +12,61 @@
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
             crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/list.css" />
-    <link rel="stylesheet" href="/css/write.css" />
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/list.css"/>
+    <link rel="stylesheet" href="/css/write.css"/>
 </head>
 <body>
 <div class="write-container">
-    <jsp:include page="../header/header.jsp" />
+    <jsp:include page="../header/header.jsp"/>
     <section>
         <form id="post-form" action="/posts/modify/${post.postId}" method="post">
-          <div class="write-wrap">
-              <input type="hidden" name="postId" value="${post.postId}">
-              <input type="hidden" name="memberId" value="${sessionScope.id}">
-              <div class="mb-3">
-                  <label for="post-title">제목</label>
-                  <input type="text" class="form-control" id="post-title" name="postTitle" placeholder="제목을 입력해주세요" value="${post.postTitle}">
-              </div>
-              <div class="mb-3">
-                  <label for="post-writer">작성자</label>
-                  <div class="form-control post-writer" id="post-writer"><c:out value="${post.memberName}"/></div>
-              </div>
-              <div class="input-group mb-3">
-                  <input type="file" class="form-control" id="inputGroupFile02">
-                  <label class="input-group-text" for="inputGroupFile02">Upload</label>
-              </div>
-              <div class="mb-3">
-                  <label for="post-content">내용</label>
-                  <textarea class="form-control content-area" id="post-content" name="postContent" placeholder="내용을 입력해주세요"><c:out value="${post.postContent}"/></textarea>
-              </div>
-              <div class="post-btn-container"><button type="button" class="btn btn-primary register-btn">게시글 수정</button></div>
-          </div>
+            <div class="write-wrap">
+                <input type="hidden" name="postId" value="${post.postId}">
+                <input type="hidden" name="memberId" value="${sessionScope.id}">
+                <div class="mb-3">
+                    <label for="post-title">제목</label>
+                    <input type="text" class="form-control" id="post-title" name="postTitle" placeholder="제목을 입력해주세요" =
+                    "${post.postTitle}">
+                </div>
+                <div class="mb-3">
+                    <label for="post-writer">작성자</label>
+                    <div class="form-control post-writer" id="post-writer"><c:out value="${post.memberName}"/></div>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile">첨부 파일</label>
+                    <div class="form-control" type="file" id="formFile">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control modify-file" id="inputGroupFile02" multiple>
+                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        </div>
+                        <c:forEach items="${files}" var="file">
+                            <div class="modify-file-wrap">
+                                <div class="file-wrap">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                                        <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                    </svg>
+                                    <a class="p-1 rounded" style="color:#0d6efd; font-size: 14px"
+                                       href="<c:url value='/files/download?fileName=${file.filePath}/${file.fileUuid}_${file.fileName}'/> ">${file.fileName}
+                                    </a><span style="font-size: 12px">(<fmt:formatNumber value="${file.fileSize/1024}"
+                                                                                         pattern=".00"/>KB)</span><br>
+                                </div>
+                                <button type="button" class="btn btn-primary file-delete-btn">삭제</button>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="post-content">내용</label>
+                    <textarea class="form-control content-area" id="post-content" name="postContent"
+                              placeholder="내용을 입력해주세요"><c:out value="${post.postContent}"/></textarea>
+                </div>
+                <div class="post-btn-container">
+                    <button type="button" class="btn btn-primary register-btn">게시글 수정</button>
+                </div>
+            </div>
         </form>
     </section>
 </div>

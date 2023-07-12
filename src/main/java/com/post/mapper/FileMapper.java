@@ -14,4 +14,6 @@ public interface FileMapper {
 
     public void delete(Long postId);
 
+    public int getCount(Long postId);
+
 }

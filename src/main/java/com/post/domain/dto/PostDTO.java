@@ -20,4 +20,5 @@ public class PostDTO {
     private String postRegisterDate;
     private String postUpdateDate;
     private List<FileVO> files = new ArrayList<>();
+    private List<Long> fileIdsForDelete = new ArrayList<>();
 }

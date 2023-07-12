@@ -52,14 +52,17 @@ public class PostsController {
     public String goToDetail(@PathVariable Long id, Model model){
         postService.getPost(id).ifPresent(postDTO ->
                 model.addAttribute("post", postDTO));
+        model.addAttribute("files", fileService.getFiles(id));
         return "/posts/detail";
     }
 
 
     @GetMapping("/modify/{id}")
     public String goToModify(@PathVariable Long id, Model model){
-        postService.getPost(id).ifPresent(postDTO ->
-                model.addAttribute("post", postDTO));
+        postService.getPost(id).ifPresent(postDTO -> model.addAttribute("post", postDTO)
+        );
+        model.addAttribute("files", fileService.getFiles(id));
+
         return "/posts/modify";
     }
 
