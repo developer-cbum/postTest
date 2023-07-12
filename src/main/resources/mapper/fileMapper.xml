@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.post.mapper.FileMapper">
+
+<!-- 파일 등록-->
+    <insert id="insert">
+        INSERT INTO tbl_file
+            (file_name, file_path, file_uuid, file_size, post_id)
+        VALUES(#{fileName}, #{filePath}, #{fileUuid}, #{fileSize}, #{postId});
+    </insert>
+
+   <!--게시글에 있는 모든 파일 가져오기-->
+    <select id="selectByPostId" resultType="FileVO">
+        select file_name, file_path, file_uuid, file_size, post_id
+        from tbl_file
+        where post_id = #{postId}
+    </select>
+
+<!-- 파일 삭제-->
+    <delete id="delete">
+        delete from tbl_file
+        where post_id = #{postId}
+    </delete>
+
+</mapper>
