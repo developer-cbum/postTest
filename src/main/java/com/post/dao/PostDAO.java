@@ -1,6 +1,7 @@
 package com.post.dao;
 
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import com.post.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,18 +22,18 @@ public class PostDAO {
     }
 
 //   게시글 상세 조회
-    public Optional<PostVO> postFindById(Long id){
+    public Optional<PostDTO> postFindById(Long id){
         return postMapper.select(id);
     }
 
 //   전체 게시글 조회
-    public List<PostVO> postFindAll(Pagination pagination){
+    public List<PostDTO> postFindAll(Pagination pagination){
         return postMapper.selectAll(pagination);
     }
 
 //   게시글 수정
-    public void setPost(PostVO postVO){
-        postMapper.update(postVO);
+    public void setPost(PostDTO postDTO){
+        postMapper.update(postDTO);
     }
 
 //   게시글 삭제

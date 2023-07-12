@@ -3,15 +3,16 @@
 <mapper namespace="com.post.mapper.PostMapper">
 
 <!--게시판 상세 조회-->
-    <select id="select" resultType="PostVO">
-        select post_id, post_writer, post_title, post_content, post_register_date, post_update_date
-        from tbl_post
-        where post_id = #{postId}
+    <select id="select" resultType="PostDTO">
+        select post_id, m.member_id,member_name, post_title, post_content, post_register_date, post_update_date
+        from tbl_member m join tbl_post p
+        on m.member_id = p.member_id and post_id = #{postId}
     </select>
 
-    <select id="selectAll" resultType="PostVO">
-        select post_id, post_writer, post_title, post_content, post_register_date, post_update_date
-        from tbl_post
+    <select id="selectAll" resultType="PostDTO">
+        select post_id, m.member_id,member_name, post_title, post_content, post_register_date, post_update_date
+        from tbl_member m join tbl_post p
+        on m.member_id = p.member_id
         order by post_id desc
         limit #{offset}, #{rowCount}
     </select>
@@ -19,14 +20,14 @@
 <!-- 게시판 등록-->
     <insert id="insert">
         insert into tbl_post
-        (post_writer, post_title, post_content)
-        values(#{postWriter}, #{postTitle}, #{postContent})
+        (post_title, post_content, member_id)
+        values(#{postTitle}, #{postContent}, #{memberId})
     </insert>
 
 <!--게시판 수정-->
     <update id="update">
         update tbl_post
-        set post_writer = #{postWriter}, post_title = #{postTitle}, post_content = #{postContent}, post_update_date = current_timestamp()
+        set post_title = #{postTitle}, post_content = #{postContent}, post_update_date = current_timestamp()
         where post_id = #{postId}
     </update>
 

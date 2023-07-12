@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class PostVO {
     private Long postId;
-    private String postWriter;
+    private Long memberId;
     private String postTitle;
     private String postContent;
     private String postRegisterDate;

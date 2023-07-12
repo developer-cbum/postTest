@@ -2,6 +2,7 @@ package com.post.service;
 
 import com.post.dao.PostDAO;
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,12 +17,18 @@ public class PostServiceTests {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private MemberService memberService;
+
     @Test
     public void registerTest(){
+
+        Optional<Long> foundId = memberService.getId("ljm1234@naver.com", "1234");
+        log.info(foundId.toString());
         for (int i = 0; i < 100; i++) {
             PostVO postVO = new PostVO();
-            postVO.setPostWriter("작성자" + (i+1));
             postVO.setPostTitle("제목"+ (i+1));
+            postVO.setMemberId(foundId.get());
             postVO.setPostContent("내용"+ (i+1));
             postService.registerPost(postVO);
         }
@@ -38,15 +45,15 @@ public class PostServiceTests {
         pagination.setTotal(postService.getTotal());
         pagination.setPage(1);
         pagination.progress();
-        postService.getPostList(pagination).stream().map(PostVO::toString).forEach(log::info);
+        postService.getPostList(pagination).stream().map(PostDTO::toString).forEach(log::info);
     }
 
     @Test
     public void modifyTest(){
-        Optional<PostVO> foundPost = postService.getPost(3L);
-        foundPost.ifPresent(postVO -> {
-            postVO.setPostTitle("수정3");
-            postService.modifyPost(postVO);
+        Optional<PostDTO> foundPost = postService.getPost(3L);
+        foundPost.ifPresent(postDTO -> {
+            postDTO.setPostTitle("수정3");
+            postService.modifyPost(postDTO);
         });
     }
 

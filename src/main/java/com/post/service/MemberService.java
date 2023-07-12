@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface MemberService {
 
     //회원가입
-    public void registerMember(MemberVO memberVO);
+    public void joinMember(MemberVO memberVO);
 
     //로그인
     public Optional<Long> getId(String memberEmail, String memberPassword);

@@ -23,13 +23,14 @@
         <form id="post-form" action="/posts/modify/${post.postId}" method="post">
           <div class="write-wrap">
               <input type="hidden" name="postId" value="${post.postId}">
+              <input type="hidden" name="memberId" value="${sessionScope.id}">
               <div class="mb-3">
                   <label for="post-title">제목</label>
                   <input type="text" class="form-control" id="post-title" name="postTitle" placeholder="제목을 입력해주세요" value="${post.postTitle}">
               </div>
               <div class="mb-3">
                   <label for="post-writer">작성자</label>
-                  <input type="text" class="form-control" id="post-writer" name="postWriter" placeholder="작성자를 입력해주세요" value="${post.postWriter}">
+                  <div class="form-control post-writer" id="post-writer"><c:out value="${post.memberName}"/></div>
               </div>
               <div class="mb-3">
                   <label for="post-content">내용</label>

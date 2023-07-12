@@ -1,6 +1,7 @@
 package com.post.mapper;
 
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -23,7 +24,6 @@ public class PostMapperTests {
         //게시글 등록
         for (int i = 0; i < 50; i++) {
             PostVO postVO = new PostVO();
-            postVO.setPostWriter("작성자" + (i + 1));
             postVO.setPostTitle("제목"+ (i + 1));
             postVO.setPostContent("내용"+ (i + 1));
             postMapper.insert(postVO);
@@ -44,17 +44,17 @@ public class PostMapperTests {
         pagination.setTotal(postMapper.selectTotal());
         pagination.setPage(1);
         pagination.progress();
-        postMapper.selectAll(pagination).stream().map(PostVO::toString).forEach(log::info);
+        postMapper.selectAll(pagination).stream().map(PostDTO::toString).forEach(log::info);
     }
 
     @Test
     public void updateTest(){
         // 게시글 하나 조회
-        Optional<PostVO> foundPost = postMapper.select(1L);
+        Optional<PostDTO> foundPost = postMapper.select(1L);
         // 있으면 수정
-        foundPost.ifPresent(postVO -> postVO.setPostTitle("수정"));
+        foundPost.ifPresent(postDTO -> postDTO.setPostTitle("수정"));
         // 수정
-        foundPost.ifPresent(postVO -> postMapper.update(postVO));
+        foundPost.ifPresent(postDTO -> postMapper.update(postDTO));
     }
 
     @Test

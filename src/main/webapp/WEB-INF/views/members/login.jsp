@@ -27,15 +27,15 @@
             <form action="/members/login" method="post">
                 <div class="mb-3">
                     <label for="member-email" class="form-label">이메일 주소</label>
-                    <input type="email" class="form-control" id="member-email" placeholder="example@email.com">
+                    <input type="email" class="form-control" id="member-email" name="memberEmail" placeholder="example@email.com">
                 </div>
                 <div class="mb-3">
                     <label for="member-password" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="member-password" placeholder="password">
+                    <input type="password" class="form-control" id="member-password" name="memberPassword" placeholder="password">
                 </div>
                 <div class="member-btn-wrap">
                     <button type="button" class="btn btn-primary join-btn">회원가입</button>
-                    <button type="button" class="btn btn-primary login-btn">로그인</button>
+                    <button type="submit" class="btn btn-primary login-btn">로그인</button>
                 </div>
             </form>
         </div>
@@ -43,5 +43,16 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    let joinStatus = [${join}];
+    let loginStatus = [${loginStatus}];
+    if(joinStatus[0]){
+        alert("회원가입완료");
+    }
+    if(loginStatus[0]){
+        alert("아이디나 비밀번호를 확인해주세요")
+    }
+
+</script>
 <script src="/js/login.js"></script>
 </html>

@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberDAO memberDAO;
     @Override
-    public void registerMember(MemberVO memberVO) {
+    public void joinMember(MemberVO memberVO) {
         memberDAO.saveMember(memberVO);
     }
 

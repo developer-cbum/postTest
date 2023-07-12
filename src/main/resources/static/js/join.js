@@ -14,41 +14,28 @@ $(document).ready(function () {
     const $joinBtn = $('.join-btn');
 
     //통과
-    const $pass = $('#email-pass');
+    const $passTags = $('.valid-feedback');
     //불통과
-    const $notPass = $('#email-fail');
+    const $notPassTags = $('.invalid-feedback');
 
+    let nameFlag =false;
+    let emailFlag =false;
+    let passwordFlag = false;
 
     $loginBtn.on("click", () => {
         location.href = `/members/login`
     })
 
-
-    //회원가입 유효성검사
-    // $joinBtn.on(click, function (){
-    //
-    // })
-
-
     //이메일 유효성검사
-    $email.on("keyup", function () {
-        memberEmail = $(this).val();
-        if (!fn_emailChk($email.val())) {
-            $notPass.text("올바른 이메일 형식을 입력해 주세요");
-            $notPass.show();
-            $pass.hide();
-            }
-        // } else if(fn_emailChk($email.val())) {
-        //     $pass.text("멋진 이메일이네요");
-        //     $pass.show();
-        //     $notPass.hide();
-        //     checkId($email.val());
-        // }
+    $email.on("input", function () {
+        emailCheck();
+        if(!emailCheck()){
+            checkId();
+        }
+        joinCheck();
     });
 
-    $email.on("blur", function (){
-        checkId();
-    })
+
 
     //이름에 특수문자금지
     $name.bind("input", function () {
@@ -57,21 +44,46 @@ $(document).ready(function () {
         if (re.test(temp)) { //특수문자가 포함되면 삭제하여 값으로 다시셋팅
             $name.val(temp.replace(re, ""));
         }
+
+        if($(this).val() != ''){
+            $passTags.eq(0).text(`환영합니다`);
+            $passTags.eq(0).show();
+            $notPassTags.eq(0).hide();
+            nameFlag = true;
+        }else{
+            $notPassTags.eq(0).text("이름을 입력해주세요");
+            $notPassTags.eq(0).show();
+            $passTags.eq(0).hide();
+            nameFlag=false;
+        }
+        joinCheck()
+
     });
 
+    //비밀번호 검사
+    $password.on("input", function (){
+           if(nullPassword()){
+               $passTags.eq(2).text(`비밀번호 입력완료`);
+               $passTags.eq(2).show();
+               $notPassTags.eq(2).hide();
+               passwordFlag=true;
+           }else{
+               $notPassTags.eq(2).text("비밀번호를 입력해주세요");
+               $notPassTags.eq(2).show();
+               $passTags.eq(2).hide();
+               passwordFlag=false;
+           }
+        samePassword(sameCheckPassword());
+    })
 
-    /*이메일 유효성검사 함수*/
-    function fn_emailChk(email) {
-        let regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{1,4}$/;
-        if (!regExp.test(email)) {
-            return false;
+    //비밀번호 확인
+    $checkPassword.on("input", function (){
+        if(!nullCheckPassword()) {
+            $notPassTags.eq(3).text("비밀번호 확인를 입력해주세요");
+            $notPassTags.eq(3).show();
+            $passTags.eq(3).hide();
         }
-        return true;
-    }
-
-    //비밀번호 같은지만 검사
-    $password.on("blur", function (){
-
+        samePassword(sameCheckPassword());
     })
 
 
@@ -83,25 +95,93 @@ $(document).ready(function () {
             type: "post",
             data:  {memberEmail : memberEmail},
             success: function (data){
-                console.log(data);
                 if(data){
-                    $pass.text("멋진 이메일이네요");
-                    $pass.show();
-                    $notPass.hide();
+                    $passTags.eq(1).text("멋진 이메일이네요");
+                    $passTags.eq(1).show();
+                    $notPassTags.eq(1).hide();
+                    emailFlag =true;
                 }else{
-                    $notPass.text("중복된아이디입니다");
-                    $notPass.show();
-                    $pass.hide();
+                    $notPassTags.eq(1).text("중복된아이디입니다");
+                    $notPassTags.eq(1).show();
+                    $passTags.eq(1).hide();
+                    emailFlag =false;
                 }
             }
 
         })
     }
 
-    function checkPassword(){
+
+    function sameCheckPassword(){
         if($password.val() != $checkPassword.val()){
             return false;
         }
+        return true;
     }
+
+    function samePassword(callback){
+        if(callback){
+            $passTags.eq(3).text(`비밀번호가 일치합니다`);
+            $passTags.eq(3).show();
+            $notPassTags.eq(3).hide();
+            passwordFlag=true;
+        }else{
+            $notPassTags.eq(3).text("비밀번호 불일치합니다");
+            $notPassTags.eq(3).show();
+            $passTags.eq(3).hide();
+            passwordFlag=false;
+        }
+
+        joinCheck()
+    }
+
+    function nullCheckPassword(){
+        if($checkPassword.val() ==''){
+            return false;
+        }
+        return true;
+    }
+
+    function nullPassword(){
+        if($password.val() ==''){
+            return false;
+        }
+        return true;
+    }
+
+
+
+    /*이메일 유효성검사 함수*/
+    function fn_emailChk(email) {
+        let regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{1,4}$/;
+        if (!regExp.test(email)) {
+            return false;
+        }
+        return true;
+    }
+
+    function emailCheck(){
+        if (!fn_emailChk($email.val())) {
+            $notPassTags.eq(1).text("올바른 이메일 형식을 입력해 주세요");
+            $notPassTags.eq(1).show();
+            $passTags.eq(1).hide();
+            return true;
+        }
+        return false;
+    }
+
+    function joinCheck(){
+        console.log(nameFlag)
+        console.log(emailFlag)
+        console.log(passwordFlag)
+        console.log(nullCheckPassword())
+        console.log(nullPassword())
+
+        if(nameFlag && emailFlag && passwordFlag &&nullCheckPassword() &&nullPassword()){
+        $joinBtn.prop("disabled", false);
+     }else{
+            $joinBtn.prop("disabled", true);
+        }
+}
 
 })

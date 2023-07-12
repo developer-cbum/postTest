@@ -55,6 +55,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
     let posts = ${posts};
+    let id = [${sessionScope.id}];
 </script>
 <script src="/js/elapsedTime.js"></script>
 <script src="/js/list.js"></script>

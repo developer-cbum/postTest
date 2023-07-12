@@ -1,6 +1,7 @@
 package com.post.controller;
 
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import com.post.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +46,8 @@ public class PostsController {
 
     @GetMapping("/detail/{id}")
     public String goToDetail(@PathVariable Long id, Model model){
-        postService.getPost(id).ifPresent(postVO ->
-                model.addAttribute("post", postVO));
+        postService.getPost(id).ifPresent(postDTO ->
+                model.addAttribute("post", postDTO));
         return "/posts/detail";
     }
 
@@ -59,8 +60,8 @@ public class PostsController {
     }
 
     @PostMapping("/modify/{id}")
-    public RedirectView modify(@PathVariable Long id, PostVO postVO){
-        postService.modifyPost(postVO);
+    public RedirectView modify(@PathVariable Long id, PostDTO postDTO){
+        postService.modifyPost(postDTO);
         return new RedirectView("/posts/detail/" + id);
     }
 

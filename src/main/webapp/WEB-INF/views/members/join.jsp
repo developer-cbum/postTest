@@ -27,11 +27,15 @@
             <form action="/members/join" method="post">
                 <div class="mb-3">
                     <label for="member-name" class="form-label">이름</label>
-                    <input type="text" class="form-control" id="member-name">
+                    <input type="text"  name="memberName" class="form-control" id="member-name" placeholder="이름">
+                    <div id="name-pass" class="valid-feedback">
+                    </div>
+                    <div id="name-fail" class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="member-email" class="form-label">이메일 주소</label>
-                    <input type="email" class="form-control" id="member-email">
+                    <input type="email" name="memberEmail" class="form-control" id="member-email" placeholder="example@email.com">
                     <div id="email-pass" class="valid-feedback">
                     </div>
                     <div id="email-fail" class="invalid-feedback">
@@ -39,15 +43,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="member-password" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="member-password">
+                    <input type="password" name="memberPassword" class="form-control" id="member-password" placeholder="비밀번호">
+                    <div id="password-pass" class="valid-feedback">
+                    </div>
+                    <div id="password-fail" class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="check-member-password" class="form-label">비밀번호 확인</label>
-                    <input type="password" class="form-control" id="check-member-password">
+                    <input type="password" class="form-control" id="check-member-password" placeholder="비밀번호 확인">
+                    <div id="check-password-pass" class="valid-feedback">
+                    </div>
+                    <div id="check-password-fail" class="invalid-feedback">
+                    </div>
                 </div>
                 <div class="member-btn-wrap">
                     <button type="button" class="btn btn-primary login-btn">로그인</button>
-                    <button type="button" class="btn btn-primary join-btn">회원가입</button>
+                    <button type="submit" class="btn btn-primary join-btn" disabled="true">회원가입</button>
                 </div>
             </form>
         </div>

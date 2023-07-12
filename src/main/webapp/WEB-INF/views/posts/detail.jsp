@@ -31,7 +31,7 @@
             <div class="mb-3">
                 <label for="writer">작성자</label>
                 <div class="form-control" id="writer">
-                  <c:out value="${post.postWriter}"/>
+                  <c:out value="${post.memberName}"/>
                 </div>
             </div>
             <div class="mb-3">
@@ -41,12 +41,14 @@
                 </div>
             </div>
             <div class="btn-wrap">
-                <div class="post-btn-wrap modify-btn-wrap">
-                    <button type="button" class="btn btn-primary modify-btn" onclick="location.href='/posts/modify/${post.postId}'">수정</button>
-                </div>
-                <div class="post-btn-wrap delete-btn-wrap">
-                    <button type="button" class="btn btn-primary delete-btn" onclick="location.href='/posts/remove/${post.postId}'">삭제</button>
-                </div>
+                    <c:if test="${sessionScope.id == post.memberId}">
+                        <div class="post-btn-wrap modify-btn-wrap">
+                            <button type="button" class="btn btn-primary modify-btn" onclick="location.href='/posts/modify/${post.postId}'">수정</button>
+                        </div>
+                        <div class="post-btn-wrap delete-btn-wrap">
+                            <button type="button" class="btn btn-primary delete-btn" onclick="location.href='/posts/remove/${post.postId}'">삭제</button>
+                        </div>
+                    </c:if>
             </div>
         </div>
     </section>

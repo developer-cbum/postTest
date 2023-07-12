@@ -2,6 +2,7 @@ package com.post.service;
 
 import com.post.dao.PostDAO;
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -21,18 +22,18 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Optional<PostVO> getPost(Long id) {
+    public Optional<PostDTO> getPost(Long id) {
         return postDAO.postFindById(id);
     }
 
     @Override
-    public List<PostVO> getPostList(Pagination pagination) {
+    public List<PostDTO> getPostList(Pagination pagination) {
         return postDAO.postFindAll(pagination);
     }
 
     @Override
-    public void modifyPost(PostVO postVO) {
-        postDAO.setPost(postVO);
+    public void modifyPost(PostDTO postDTO) {
+        postDAO.setPost(postDTO);
     }
 
     @Override

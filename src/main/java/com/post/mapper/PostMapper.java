@@ -1,6 +1,7 @@
 package com.post.mapper;
 
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,13 +15,13 @@ public interface PostMapper {
     public void insert(PostVO postVO);
 
     //게시판 하나 조회
-    public Optional<PostVO> select(Long postId);
+    public Optional<PostDTO> select(Long postId);
 
     //게시판 전체 조회
-    public List<PostVO> selectAll(Pagination pagination);
+    public List<PostDTO> selectAll(Pagination pagination);
 
     //게시판 수정
-    public void update(PostVO postVO);
+    public void update(PostDTO postDTO);
 
     //게시판 삭제
     public void delete(Long id);

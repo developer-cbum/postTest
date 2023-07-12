@@ -1,6 +1,7 @@
 package com.post.dao;
 
 import com.post.domain.dto.Pagination;
+import com.post.domain.dto.PostDTO;
 import com.post.domain.vo.PostVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,6 @@ public class PostDAOTests {
     @Test
     public void saveTest(){
         PostVO postVO = new PostVO();
-        postVO.setPostWriter("작성자3");
         postVO.setPostTitle("제목3");
         postVO.setPostContent("내용3");
         postDAO.savePost(postVO);
@@ -37,15 +37,15 @@ public class PostDAOTests {
         pagination.setTotal(postDAO.findTotal());
         pagination.setPage(1);
         pagination.progress();
-        postDAO.postFindAll(pagination).stream().map(PostVO::toString).forEach(log::info);
+        postDAO.postFindAll(pagination).stream().map(PostDTO::toString).forEach(log::info);
     }
 
     @Test
     public void setTest(){
-        Optional<PostVO> foundPost = postDAO.postFindById(2L);
-        foundPost.ifPresent(postVO -> {
-            postVO.setPostTitle("수정2");
-            postDAO.setPost(postVO);
+        Optional<PostDTO> foundPost = postDAO.postFindById(2L);
+        foundPost.ifPresent(postDTO -> {
+            postDTO.setPostTitle("수정2");
+            postDAO.setPost(postDTO);
         });
     }
 

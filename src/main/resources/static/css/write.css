@@ -22,3 +22,8 @@
 .form-control{
   margin-top: 8px;
 }
+
+.post-writer{
+  cursor: not-allowed;
+}
+

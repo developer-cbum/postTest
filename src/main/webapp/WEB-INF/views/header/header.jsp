@@ -14,8 +14,16 @@
     <div class="header-wrap">
         <a href="/posts/list"><div class="main-logo"><img src="/images/logo2.png" alt="" /></div></a>
         <div class="header-right-wrap">
-            <a href="/posts/list"><div class="home">Home</div></a><span>|</span>
-            <a href="/members/login"><div class="login">Login</div></a>
+            <c:choose>
+                <c:when test="${sessionScope.id eq null}">
+                    <a href="/posts/list"><div class="home">Home</div></a><span>|</span>
+                    <a href="/members/login"><div class="login">Login</div></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/posts/list"><div class="home">Home</div></a><span style="margin-right: 5px">|</span>
+                    <a href="/members/logout"><div class="login">Logout</div></a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </header>

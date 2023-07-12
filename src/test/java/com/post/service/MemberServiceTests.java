@@ -23,7 +23,7 @@ public class MemberServiceTests {
         memberVO.setMemberName("이순신");
         memberVO.setMemberPassword("1234");
 
-        memberService.registerMember(memberVO);
+        memberService.joinMember(memberVO);
     }
 
     //로그인 테스트
