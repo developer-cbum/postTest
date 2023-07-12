@@ -40,8 +40,8 @@
                             <input type="file" class="form-control modify-file" id="file" multiple>
                             <label class="input-group-text" for="file">Upload</label>
                         </div>
-                        <c:forEach items="${files}" var="file">
                            <div class="file-plus-wrap">
+                               <c:forEach items="${files}" var="file">
                                 <div id="${file.fileId}" class="modify-file-wrap">
                                     <div class="file-wrap">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="cursor:default"
@@ -51,13 +51,12 @@
                                         </svg>
                                         <a class="p-1 rounded" style="color:#0d6efd; font-size: 14px; cursor: default"
                                            href="">${file.fileName}
-                                        </a><span style="font-size: 12px;cursor:default">(<fmt:formatNumber value="${file.fileSize/1024}"
-                                                                                             pattern=".00"/>KB)</span><br>
+                                        </a><span style="font-size: 12px">(<fmt:formatNumber value="${file.fileSize/1024}" pattern=".00"/>KB)</span>
                                     </div>
                                     <button type="button" class="btn btn-primary file-delete-btn">삭제</button>
                                 </div>
+                               </c:forEach>
                            </div>
-                        </c:forEach>
                     </div>
                 </div>
                 <div class="mb-3">

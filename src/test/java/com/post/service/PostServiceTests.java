@@ -29,19 +29,19 @@ public class PostServiceTests {
         fileService.getFiles(113L).stream().map(FileVO::toString).forEach(log::info);
     }
 
-//    @Test
-//    public void registerTest(){
-//
-//        Optional<Long> foundId = memberService.getId("ljm1234@naver.com", "1234");
-//        log.info(foundId.toString());
-//        for (int i = 0; i < 100; i++) {
-//            PostVO postVO = new PostVO();
-//            postVO.setPostTitle("제목"+ (i+1));
-//            postVO.setMemberId(foundId.get());
-//            postVO.setPostContent("내용"+ (i+1));
-//            postService.registerPost(postVO);
-//        }
-//    }
+    @Test
+    public void registerTest(){
+
+        Optional<Long> foundId = memberService.getId("admin@naver.com", "1234");
+        log.info(foundId.toString());
+        for (int i = 0; i < 100; i++) {
+            PostDTO postDTO = new PostDTO();
+            postDTO.setPostTitle("제목"+ (i+1));
+            postDTO.setMemberId(foundId.get());
+            postDTO.setPostContent("내용"+ (i+1));
+            postService.registerPost(postDTO);
+        }
+    }
 //
 //    @Test
 //    public void findByIdTest(){
