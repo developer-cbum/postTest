@@ -14,4 +14,5 @@ public class MemberVO {
     private String memberName;
     private String memberRegisterDate;
     private String memberUpdateDate;
+    private Character memberStatus;
 }

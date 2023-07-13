@@ -14,4 +14,7 @@ public class FileVO {
     private String fileUuid;
     private Long fileSize;
     private Long postId;
+    private String fileRegisterDate;
+    private String fileDeleteDate;
+    private Character fileStatus;
 }

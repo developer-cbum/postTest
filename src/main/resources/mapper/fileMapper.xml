@@ -13,12 +13,13 @@
     <select id="selectByPostId" resultType="FileVO">
         select file_id,file_name, file_path, file_uuid, file_size, post_id
         from tbl_file
-        where post_id = #{postId}
+        where post_id = #{postId} and file_status = 'Y'
     </select>
 
 <!-- 파일 삭제-->
     <delete id="delete">
-        delete from tbl_file
+        update tbl_file
+        set file_status = 'N', file_delete_date = current_timestamp()
         where file_id = #{file_id}
     </delete>
 
