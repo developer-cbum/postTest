@@ -10,6 +10,7 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/login.css">
+    <link rel="icon" href="/images/favicon.ico"/>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet"

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>게시판</title>
+    <title>게시판 상세</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/list.css"/>
     <link rel="stylesheet" href="/css/detail.css"/>
+    <link rel="icon" href="/images/favicon.ico"/>
 </head>
 <body>
 <div class="detail-container">

@@ -52,6 +52,7 @@ public class FileController {
     }
 
     //    파일 불러오기
+    // 이미지 태그 src 나 url 안에 byte 배열로 넣으면 이미지로 변환.
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException{
