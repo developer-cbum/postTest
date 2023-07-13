@@ -24,8 +24,13 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void removeFiles(Long postId) {
-        fileDAO.deleteFile(postId);
+    public void removeFile(Long fileId) {
+        fileDAO.deleteFile(fileId);
+    }
+
+    @Override
+    public void removeFileAll(Long postId) {
+        fileDAO.deleteFileAll(postId);
     }
 
     @Override

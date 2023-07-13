@@ -38,12 +38,16 @@ public class FileController {
         String path = "C:/upload/" + getPath();
         List<String> uuids = new ArrayList<>();
         File file = new File(path);
+        //경로가 존재하지 않으면 그 상위 폴더까지 만들어준다. mkdir 와 mkdirs의 차이
         if(!file.exists()){file.mkdirs();}
 
+        // input file 태그에 다중 파일 반복 돌려서 저장
         for (int i=0; i<uploadFiles.size(); i++){
             uuids.add(UUID.randomUUID().toString());
             uploadFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + uploadFiles.get(i).getOriginalFilename()));
         }
+
+        // js 에서 submit을 통해 uuids 배열을 ajax 결과로 반환하여 사용한다.
         return uuids;
     }
 
@@ -51,18 +55,13 @@ public class FileController {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
-    //    파일 불러오기
-    // 이미지 태그 src 나 url 안에 byte 배열로 넣으면 이미지로 변환.
-    @GetMapping("display")
-    @ResponseBody
-    public byte[] display(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/upload/", fileName));
-    }
 
 //        파일 다운로드
     @GetMapping("download")
     public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
+        // 파일 시스템 기준
         Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        // header에 정보를 담아준다.
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);

@@ -16,6 +16,13 @@
         where post_id = #{postId} and file_status = 'Y'
     </select>
 
+    <!--게시글에 있는 모든 파일 삭제-->
+    <delete id="deleteAll">
+        update tbl_file
+        set file_status = 'N', file_delete_date = current_timestamp()
+        where post_id = #{postId} and file_status = 'Y'
+    </delete>
+
 <!-- 파일 삭제-->
     <delete id="delete">
         update tbl_file

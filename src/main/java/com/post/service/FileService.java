@@ -10,7 +10,9 @@ public interface FileService {
 
     public List<FileVO> getFiles(Long postId);
 
-    public void removeFiles(Long postId);
+    public void removeFile(Long fileId);
+
+    public void removeFileAll(Long postId);
 
     public int getCount(Long postId);
 }

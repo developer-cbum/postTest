@@ -42,6 +42,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void modifyPost(PostDTO postDTO) {
 //       새로 수정하는 파일 추가
         postDAO.setPost(postDTO);
@@ -54,7 +55,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void removePost(Long id) {
+        fileDAO.deleteFileAll(id);
         postDAO.deletePost(id);
     }
 
