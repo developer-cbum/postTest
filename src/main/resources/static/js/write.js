@@ -66,6 +66,13 @@ $(document).ready(function () {
             formData.append("uploadFile", file);
             sizes.push(files[i].size);
             name.push(files[i].name);
+
+            // ajax로 통신하기 전에 alert 띄우고 막기
+            if(sizes[i] > 41943040){
+                alert("파일 사이즈가 너무 큽니다.")
+                return false;
+            }
+
             text += `
             <input type="hidden" name="files[${i}].filePath" value="${filePath}">
             <input type="hidden" name="files[${i}].fileName" value="${name[i]}">
@@ -91,6 +98,14 @@ $(document).ready(function () {
             number++
         })
 
+        // 아래 파일 정보 input 태그 생성 막고 input 안에 value 초기화
+        for (let i = 0; i < sizes.length; i++) {
+            if(sizes[i] > 41943040){
+                $(this).val("");
+                return;
+            }
+        }
+
         //수정 시 추가한 파일 목록에 추가해주기
         $filePlusWrap.append(plusText);
 
@@ -108,6 +123,7 @@ $(document).ready(function () {
                 }
             },
             error      : function () {
+
                 alert("예상치 못한 오류 발생입니다.")
             }
 
