@@ -146,13 +146,18 @@ $(document).ready(function () {
             return;
         }
 
+
+
         //수정창에서 파일을 추가로 올리고 삭제할 때, 아래 코드 실행
         //flag 를 주어 수정하기 버튼을 눌렀을 때 최종 파일 목록에 있는 것을 input hidden 태그로 다시 생성 시켜서 db에 저장
+
         if(plusFileDeleteCheck){
             plusFileDeleteCheck= false;
             text="";
-            $fileInput.trigger("change");
+           if(plusText != "") {$fileInput.trigger("change")};
         }
+
+
         // 입력폼에 input hidden 파일정보가 담긴 태그들 붙히기
         $form.append(text)
         // 게시글 수정 및 등록
