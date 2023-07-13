@@ -61,7 +61,6 @@ public class FileController {
 //        파일 다운로드
     @GetMapping("download")
     public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
-        log.info("들어옴");
         Resource resource = new FileSystemResource("C:/upload/" + fileName);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
